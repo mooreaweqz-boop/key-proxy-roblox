@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROXY-ROBLOX - Premium System</title>
+    <style>
+        * { box-sizing: border-box; font-family: 'Segoe UI', Roboto, sans-serif; }
+        body {
+            background: radial-gradient(circle at center, #0c0c1e 0%, #05050f 100%);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            background: rgba(10, 10, 20, 0.85);
+            border: 2px solid #00f3ff;
+            border-radius: 24px;
+            padding: 40px 30px;
+            width: 100%;
+            max-width: 440px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 0 40px rgba(0, 243, 255, 0.25), inset 0 0 20px rgba(0, 243, 255, 0.1);
+            backdrop-filter: blur(15px);
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 25%; width: 50%; height: 3px;
+            background: linear-gradient(90deg, transparent, #00f3ff, #ff0055, transparent);
+            box-shadow: 0 0 15px #00f3ff;
+        }
+
+        h1 {
+            color: #00f3ff;
+            font-size: 32px;
+            font-weight: 900;
+            margin-top: 0;
+            margin-bottom: 8px;
+            text-shadow: 0 0 15px rgba(0, 243, 255, 0.8);
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            color: #6a6a8a;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+        }
+
+        /* ------------------ เมนูหลักด้านหน้า ------------------ */
+        .main-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .menu-btn {
+            background: #0d0d1f;
+            color: #ffffff;
+            border: 1px solid #00f3ff;
+            padding: 16px;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 10px rgba(0, 243, 255, 0.05);
+        }
+
+        .menu-btn:hover {
+            background: rgba(0, 243, 255, 0.1);
+            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .menu-btn.danger {
+            border-color: #ff0055;
+            color: #ff0055;
+        }
+
+        .menu-btn.danger:hover {
+            background: rgba(255, 0, 85, 0.1);
+            box-shadow: 0 0 15px rgba(255, 0, 85, 0.2);
+        }
+
+        /* ------------------ แผงระบบย่อย ------------------ */
+        .key-panel, .support-panel, .ban-panel {
+            display: none;
+            animation: fadeIn 0.4s ease-out;
+            border-top: 1px dashed #333355;
+            padding-top: 25px;
+            margin-top: 15px;
+        }
+
+        .tab-group {
+            display: flex;
+            background: #020205;
+            border: 1px solid #333355;
+            border-radius: 12px;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            background: transparent;
+            color: #8888aa;
+            border: none;
+            padding: 12px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .tab-btn.active {
+            background: linear-gradient(135deg, #00f3ff, #0066ff);
+            color: #000000;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 12px;
+            color: #00f3ff;
+            margin-bottom: 8px;
+        }
+
+        .input-box {
+            width: 100%;
+            background: #020205;
+            border: 1px solid #00f3ff;
+            border-radius: 10px;
+            padding: 14px;
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            outline: none;
+        }
+
+        .btn-getkey {
+            background: linear-gradient(135deg, #00f3ff 0%, #0066ff 100%);
+            color: #000000;
+            border: none;
+            padding: 18px;
+            width: 100%;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 800;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0, 243, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .btn-getkey:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0, 243, 255, 0.6);
+        }
+
+        .key-display-box {
+            display: none;
+            margin-top: 25px;
+            background: #020205;
+            border: 1.5px solid #ff0055;
+            padding: 18px;
+            border-radius: 12px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 16px;
+            color: #ff0055;
+            font-weight: bold;
+            cursor: pointer;
+            text-shadow: 0 0 10px rgba(255, 0, 85, 0.5);
+            word-break: break-all;
+            transition: background 0.2s;
+        }
+
+        .key-display-box:hover {
+            background: rgba(255, 0, 85, 0.05);
+        }
+
+        .copy-tip {
+            display: none;
+            font-size: 12px;
+            color: #555577;
+            margin-top: 12px;
+        }
+
+        /* ------------------ โซนติดต่อทีมงาน ------------------ */
+        .support-box {
+            background: #070714;
+            border: 1px solid #5865F2;
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 0 15px rgba(88, 101, 242, 0.15);
+        }
+
+        .discord-title {
+            color: #5865F2;
+            font-weight: bold;
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        .support-btn-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .btn-discord {
+            flex: 2;
+            background: #5865F2;
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-discord:hover { background: #4752C4; transform: translateY(-1px); }
+
+        .btn-copy-link {
+            flex: 1;
+            background: #1e1e38;
+            color: #00f3ff;
+            border: 1px solid #00f3ff;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-copy-link:hover { background: rgba(0, 243, 255, 0.1); transform: translateY(-1px); }
+
+        /* ------------------ โซนระบบแบนคีย์ ------------------ */
+        .search-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            flex: 2;
+            background: #020205;
+            border: 1px solid #ff0055;
+            border-radius: 10px;
+            padding: 14px;
+            color: #ffffff;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .btn-search {
+            flex: 1;
+            background: #ff0055;
+            color: #ffffff;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .btn-search:hover { background: #cc0044; }
+
+        .result-box {
+            display: none;
+            background: #09020a;
+            border: 1px solid #331122;
+            border-radius: 14px;
+            padding: 20px;
+            text-align: left;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .result-item {
+            margin-bottom: 12px;
+            font-size: 14px;
+        }
+
+        .result-label { color: #8888aa; }
+        .result-value { font-weight: bold; color: #ffffff; word-break: break-all; }
+        .result-value.active-status { color: #00ff66; }
+        .result-value.banned-status { color: #ff0055; text-shadow: 0 0 10px rgba(255,0,85,0.4); }
+
+        .btn-ban-action {
+            width: 100%;
+            background: linear-gradient(135deg, #ff0055 0%, #990022 100%);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 15px;
+            cursor: pointer;
+            margin-top: 15px;
+            box-shadow: 0 4px 15px rgba(255, 0, 85, 0.3);
+            transition: all 0.3s;
+        }
+
+        .btn-ban-action:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(255, 0, 85, 0.5); }
+        .btn-ban-action:disabled { background: #333344; color: #777788; cursor: not-allowed; box-shadow: none; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>PROXY-ROBLOX</h1>
+    <div class="subtitle">🔥 PREMIUM SYSTEM PANEL 🔥</div>
+    
+    <div class="main-menu">
+        <button class="menu-btn" onclick="togglePanel('keyPanel')">
+            <span>🔑 เปิดระบบจัดการคีย์ (KEY SYSTEM)</span>
+            <span>▶</span>
+        </button>
+        
+        <button class="menu-btn" onclick="togglePanel('supportPanel')">
+            <span>💬 ติดต่อทีมงาน (SUPPORT)</span>
+            <span>🔗</span>
+        </button>
+        
+        <button class="menu-btn danger" onclick="togglePanel('banPanel')">
+            <span>🚫 ระบบแบนคีย์ (BAN KEY)</span>
+            <span>⚠️</span>
+        </button>
+    </div>
+
+    <!-- แผงระบบคีย์ -->
+    <div class="key-panel" id="keyPanel">
+        <div class="tab-group">
+            <button class="tab-btn active" id="btnDay" onclick="setMode('day')">📅 รายวัน (DAY)</button>
+            <button class="tab-btn" id="btnMonth" onclick="setMode('month')">🌙 รายเดือน (MONTH)</button>
+        </div>
+
+        <div class="input-group">
+            <label id="inputLabel">ระบุจำนวนวัน (1 - 15 วัน):</label>
+            <input type="number" id="numInput" class="input-box" min="1" max="15" value="1" oninput="validateInput(this)">
+        </div>
+        
+        <button class="btn-getkey" onclick="generateKey()">⚡ GENERATE KEY</button>
+        
+        <div class="key-display-box" id="keyBox" onclick="copyToClipboard()"></div>
+        <div class="copy-tip" id="copyTip">✨ แตะที่กล่องด้านบนเพื่อคัดลอกคีย์อัตโนมัติ ✨</div>
+    </div>
+
+    <!-- แผงติดต่อทีมงาน -->
+    <div class="support-panel" id="supportPanel">
+        <div class="support-box">
+            <div class="discord-title">💬 PROXY COMMUNITY</div>
+            <p style="font-size: 13px; color: #8888aa; margin: 0 0 15px 0;">หากพบปัญหาการใช้งานสามารถเข้าร่วมดิสคอร์ดของเราได้เลยครับ</p>
+            <div class="support-btn-group">
+                <button class="btn-discord" onclick="openDiscord()">🚀 เข้าสู่ Discord</button>
+                <button class="btn-copy-link" onclick="copyDiscordLink()">📋 COPY</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- แผงระบบแบนคีย์ -->
+    <div class="ban-panel" id="banPanel">
+        <div class="search-group">
+            <input type="text" id="searchKeyInput" class="search-box" placeholder="กรอกชื่อคีย์ที่ต้องการค้นหา...">
+            <button class="btn-search" onclick="searchKey()">🔍 ค้นหา</button>
+        </div>
+
+        <!-- กล่องแสดงผลลัพธ์การค้นหา -->
+        <div class="result-box" id="resultBox">
+            <div class="result-item">
+                <span class="result-label">🔑 KEY: </span>
+                <span class="result-value" id="resKeyName">-</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">⏳ เวลาที่เหลือ: </span>
+                <span class="result-value" id="resTimeLeft">-</span>
+            </div>
+            <div class="result-item">
+                <span class="result-label">🟢 สถานะ: </span>
+                <span class="result-value" id="resStatus">-</span>
+            </div>
+            <button class="btn-ban-action" id="banActionBtn" onclick="executeBan()">🚫 สั่งแบนคีย์นี้ (BAN)</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentMode = 'day';
+    const discordURL = "https://discord.gg/6aCDxfR7br";
+
+    // ฐานข้อมูลคีย์จำลอง (Mock Database) ที่อัปเดตรหัสตามตัวอย่างของคุณ
+    let mockKeyDatabase = {
+        "proxy-roblox-1day-qdvkj": { timeLeft: "1 วัน 0 ชั่วโมง", status: "ใช้งานได้ปกติ" },
+        "proxy-roblox-3month-abcde": { timeLeft: "3 เดือน 0 วัน", status: "ใช้งานได้ปกติ" }
+    };
+    
+    let activeSearchedKey = "";
+
+    function togglePanel(panelId) {
+        const panels = ['keyPanel', 'supportPanel', 'banPanel'];
+        panels.forEach(id => {
+            const p = document.getElementById(id);
+            if (id === panelId) {
+                p.style.display = (p.style.display === 'block') ? 'none' : 'block';
+                if(p.style.display === 'block') p.scrollIntoView({ behavior: 'smooth' });
+            } else {
+                p.style.display = 'none';
+            }
+        });
+    }
+
+    function searchKey() {
+        const inputVal = document.getElementById('searchKeyInput').value.trim();
+        const resultBox = document.getElementById('resultBox');
+        
+        if(!inputVal) {
+            alert("❌ กรุณากรอกคีย์ที่ต้องการค้นหาครับ");
+            return;
+        }
+
+        if(mockKeyDatabase[inputVal]) {
+            activeSearchedKey = inputVal;
+            updateResultUI(inputVal, mockKeyDatabase[inputVal]);
+            resultBox.style.display = 'block';
+        } else {
+            resultBox.style.display = 'none';
+            activeSearchedKey = "";
+            alert("❌ ไม่พบข้อมูลคีย์นี้ในระบบฐานข้อมูล");
+        }
+    }
+
+    function updateResultUI(key, data) {
+        document.getElementById('resKeyName').innerText = key;
+        document.getElementById('resTimeLeft').innerText = data.timeLeft;
+        
+        const statusEl = document.getElementById('resStatus');
+        const banBtn = document.getElementById('banActionBtn');
+        
+        statusEl.innerText = data.status;
+        
+        if(data.status === "ถูกแบน (BANNED)") {
+            statusEl.className = "result-value banned-status";
+            banBtn.disabled = true;
+            banBtn.innerText = "🔒 คีย์นี้ถูกแบนเรียบร้อยแล้ว";
+        } else {
+            statusEl.className = "result-value active-status";
+            banBtn.disabled = false;
+            banBtn.innerText = "🚫 สั่งแบนคีย์นี้ (BAN)";
+        }
+    }
+
+    function executeBan() {
+        if(!activeSearchedKey || !mockKeyDatabase[activeSearchedKey]) return;
+
+        if(confirm(`⚠️ คุณแน่ใจใช่ไหมที่จะสั่งแบนคีย์: ${activeSearchedKey}?\nเมื่อแบนแล้วจะไม่สามารถใช้งานได้อีกต่อไป`)) {
+            mockKeyDatabase[activeSearchedKey].status = "ถูกแบน (BANNED)";
+            mockKeyDatabase[activeSearchedKey].timeLeft = "0 นาที (ไม่สามารถใช้งานได้)";
+            
+            updateResultUI(activeSearchedKey, mockKeyDatabase[activeSearchedKey]);
+            alert(`🔒 สั่งระงับและแบนคีย์ ${activeSearchedKey} สำเร็จ!`);
+        }
+    }
+
+    function openDiscord() { window.open(discordURL, '_blank'); }
+
+    function copyDiscordLink() {
+        navigator.clipboard.writeText(discordURL).then(() => {
+            alert("📋 คัดลอกลิงก์ Discord เรียบร้อยแล้ว!\n" + discordURL);
+        });
+    }
+
+    function setMode(mode) {
+        currentMode = mode;
+        const btnDay = document.getElementById('btnDay');
+        const btnMonth = document.getElementById('btnMonth');
+        const inputLabel = document.getElementById('inputLabel');
+        const numInput = document.getElementById('numInput');
+
+        if(mode === 'day') {
+            btnDay.classList.add('active');
+            btnMonth.classList.remove('active');
+            inputLabel.innerText = "ระบุจำนวนวัน (1 - 15 วัน):";
+            numInput.max = 15;
+            numInput.value = "1";
+        } else {
+            btnMonth.classList.add('active');
+            btnDay.classList.remove('active');
+            inputLabel.innerText = "ระบุจำนวนเดือน (1 - 12 เดือน):";
+            numInput.max = 12;
+            numInput.value = "1";
+        }
+    }
+
+    function validateInput(input) {
+        let val = parseInt(input.value);
+        let maxLimit = currentMode === 'day' ? 15 : 12;
+        if (val > maxLimit) input.value = maxLimit;
+        if (val < 1) input.value = 1;
+        if (isNaN(val)) input.value = "";
+    }
+
+    function generateKey() {
+        const numInput = document.getElementById('numInput');
+        let amount = numInput.value || 1;
+        let maxLimit = currentMode === 'day' ? 15 : 12;
+        if (amount > maxLimit) amount = maxLimit;
+        if (amount < 1) amount = 1;
+
+        // สุ่มตัวอักษรพิมพ์เล็ก 5 ตัวตามตัวอย่าง (เช่น qdvkj)
+        const characters = 'abcdefghijklmnopqrstuvwxyz';
+        let randomStr = '';
+        for (let i = 0; i < 5; i++) {
+            randomStr += characters.charAt(Math.floor(Math.random() * characters.length));
+        }
+        
+        // ปรับการต่อข้อความ (String Concatenation) ให้ตรงกับสมมุติฐานของคุณ
+        let suffix = (currentMode === 'day') ? `${amount}day` : `${amount}month`;
+        const generatedKey = `proxy-roblox-${suffix}-${randomStr}`;
+        
+        // บันทึกลงระบบจำลองเพื่อเอาไว้สแกนแบนทีหลังได้
+        mockKeyDatabase[generatedKey] = {
+            timeLeft: currentMode === 'day' ? `${amount} วัน 0 ชั่วโมง` : `${amount} เดือน 0 วัน`,
+            status: "ใช้งานได้ปกติ"
+        };
+
+        const keyBox = document.getElementById('keyBox');
+        const copyTip = document.getElementById('copyTip');
+        keyBox.innerText = generatedKey;
+        keyBox.style.display = 'block';
+        copyTip.style.display = 'block';
+    }
+
+    function copyToClipboard() {
+        const keyText = document.getElementById('keyBox').innerText;
+        navigator.clipboard.writeText(keyText).then(() => {
+            alert("📋 คัดลอกคีย์เรียบร้อยแล้ว!\n" + keyText);
+        });
+    }
+</script>
+
+</body>
+</html>
