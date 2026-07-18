@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROXY-ROBLOX - Premium Cyber System</title>
+    <title>PROXY-ROBLOX - Cosmic Vortex Edition</title>
     <style>
         /* ------------------ Base & Reset ------------------ */
         * { 
             box-sizing: border-box; 
-            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif; 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif; 
+            transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
         
         body {
-            background: radial-gradient(circle at 50% 50%, #0a0a16 0%, #020205 100%);
+            background-color: #000000;
             color: #ffffff;
             display: flex;
             justify-content: center;
@@ -21,169 +21,186 @@
             min-height: 100vh;
             margin: 0;
             padding: 20px;
-            overflow-x: hidden;
-        }
-
-        /* Custom Scrollbar ให้ดูเท่เข้าธีม */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #05050f; }
-        ::-webkit-scrollbar-thumb { background: #00f3ff; border-radius: 10px; }
-
-        /* ------------------ Main Card Container ------------------ */
-        .container {
-            background: rgba(10, 10, 25, 0.7);
-            border: 1px solid rgba(0, 243, 255, 0.3);
-            border-radius: 28px;
-            padding: 45px 35px;
-            width: 100%;
-            max-width: 450px;
-            text-align: center;
+            overflow: hidden;
             position: relative;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), 
-                        0 0 30px rgba(0, 243, 255, 0.1),
-                        inset 0 0 20px rgba(0, 243, 255, 0.05);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
         }
 
-        /* เส้นแสงวิ่งด้านบนสุดของการ์ด */
-        .container::before {
+        /* ------------------ Cosmic Vortex Background ------------------ */
+        /* จำลองหลุมดำหมุนวนและแสงประกายใจกลางตามรูปภาพ */
+        .vortex-bg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 140vh;
+            height: 140vh;
+            transform: translate(-50%, -50%) rotate(0deg);
+            background: 
+                radial-gradient(circle at center, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.2) 2%, transparent 8%),
+                radial-gradient(circle at center, transparent 30%, rgba(255,255,255,0.05) 40%, transparent 60%),
+                conic-gradient(from 0deg, #000000, #111111, #222222, #0d0d0d, #1a1a1a, #000000);
+            border-radius: 50%;
+            z-index: 1;
+            animation: vortexRotate 40s linear infinite;
+            opacity: 0.85;
+        }
+
+        /* แสงประกายแฉกตรงกลางดวงดาว */
+        .vortex-star-flare {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 100%;
+            height: 100%;
+            transform: translate(-50%, -50%);
+            z-index: 2;
+            pointer-events: none;
+        }
+        .vortex-star-flare::before, .vortex-star-flare::after {
             content: '';
             position: absolute;
-            top: 0; left: 15%; width: 70%; height: 2px;
-            background: linear-gradient(90deg, transparent, #00f3ff, #ff0055, transparent);
-            box-shadow: 0 0 15px #00f3ff;
+            top: 50%; left: 50%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            transform: translate(-50%, -50%);
+        }
+        /* แนวนอน */
+        .vortex-star-flare::before { width: 120px; height: 1px; }
+        /* แนวตั้ง */
+        .vortex-star-flare::after { width: 1px; height: 120px; }
+
+        @keyframes vortexRotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 10px; }
+
+        /* ------------------ Main Card (Dark Glassmorphism) ------------------ */
+        .container {
+            background: rgba(5, 5, 5, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 24px;
+            padding: 50px 40px;
+            width: 100%;
+            max-width: 440px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            box-shadow: 0 30px 100px rgba(0, 0, 0, 0.9),
+                        inset 0 0 40px rgba(255, 255, 255, 0.02);
         }
 
         h1 {
-            background: linear-gradient(135deg, #00f3ff 0%, #b800ff 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-size: 36px;
-            font-weight: 900;
-            margin: 0 0 5px 0;
-            letter-spacing: 3px;
-            filter: drop-shadow(0 0 10px rgba(0, 243, 255, 0.3));
+            color: #ffffff;
+            font-size: 30px;
+            font-weight: 300;
+            margin: 0 0 8px 0;
+            letter-spacing: 6px;
+            text-transform: uppercase;
         }
 
         .subtitle {
-            color: #555577;
-            font-size: 11px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 10px;
             text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 35px;
-            font-weight: 700;
+            letter-spacing: 5px;
+            margin-bottom: 45px;
         }
 
-        /* ------------------ Main Menu Buttons ------------------ */
+        /* ------------------ Menu Buttons ------------------ */
         .main-menu {
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            gap: 14px;
         }
 
         .menu-btn {
-            background: rgba(255, 255, 255, 0.02);
-            color: rgba(255, 255, 255, 0.85);
-            border: 1px solid rgba(0, 243, 255, 0.2);
-            padding: 18px 22px;
-            border-radius: 16px;
-            font-size: 15px;
-            font-weight: 600;
+            background: rgba(255, 255, 255, 0.03);
+            color: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 18px 24px;
+            border-radius: 14px;
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 2px;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            position: relative;
-            overflow: hidden;
+            text-transform: uppercase;
         }
-
-        .menu-btn::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.08), transparent);
-            transition: 0.5s;
-        }
-
-        .menu-btn:hover::before { left: 100%; }
 
         .menu-btn:hover {
-            background: rgba(0, 243, 255, 0.05);
-            border-color: #00f3ff;
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.3);
             color: #ffffff;
-            box-shadow: 0 0 20px rgba(0, 243, 255, 0.15);
-            transform: translateY(-2px);
-        }
-
-        .menu-btn.danger {
-            border-color: rgba(255, 0, 85, 0.2);
-            color: rgba(255, 255, 255, 0.8);
+            transform: translateY(-1px);
         }
 
         .menu-btn.danger:hover {
-            background: rgba(255, 0, 85, 0.05);
-            border-color: #ff0055;
-            color: #ffffff;
-            box-shadow: 0 0 20px rgba(255, 0, 85, 0.15);
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(255, 255, 255, 0.4);
         }
 
         .menu-arrow {
-            font-size: 12px;
-            opacity: 0.5;
+            font-size: 10px;
+            opacity: 0.3;
             transform: translateX(0);
         }
         .menu-btn:hover .menu-arrow {
-            opacity: 1;
-            transform: translateX(4px);
+            opacity: 0.8;
+            transform: translateX(3px);
         }
 
-        /* ------------------ Panels (เปิด-ปิด แบบสมูธสไลด์) ------------------ */
+        /* ------------------ Panels ------------------ */
         .panel {
             max-height: 0;
             opacity: 0;
             overflow: hidden;
-            transform: translateY(-10px);
-            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1), 
+            transform: translateY(-8px);
+            transition: max-height 0.5s cubic-bezier(0.25, 1, 0.5, 1), 
                         opacity 0.4s ease, 
                         transform 0.4s ease;
         }
 
         .panel.show {
-            max-height: 500px; /* ขยายความสูงเปิดรับข้อมูล */
+            max-height: 500px;
             opacity: 1;
             transform: translateY(0);
             margin-top: 25px;
             padding-top: 25px;
-            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
         /* ------------------ Tab Control ------------------ */
         .tab-group {
             display: flex;
-            background: rgba(0, 0, 0, 0.4);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            border-radius: 14px;
-            padding: 6px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            border-radius: 12px;
+            padding: 4px;
             margin-bottom: 25px;
         }
 
         .tab-btn {
             flex: 1;
             background: transparent;
-            color: #666688;
+            color: rgba(255, 255, 255, 0.3);
             border: none;
             padding: 12px;
-            font-size: 13px;
-            font-weight: 700;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 1px;
             cursor: pointer;
-            border-radius: 10px;
+            border-radius: 8px;
         }
 
         .tab-btn.active {
-            background: linear-gradient(135deg, #00f3ff 0%, #0066ff 100%);
-            color: #020205;
-            box-shadow: 0 4px 15px rgba(0, 243, 255, 0.3);
+            background: rgba(255, 255, 255, 0.9);
+            color: #000000;
         }
 
         /* ------------------ Inputs & Labels ------------------ */
@@ -194,79 +211,78 @@
 
         .input-group label {
             display: block;
-            font-size: 11px;
-            color: #00f3ff;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.4);
             text-transform: uppercase;
-            letter-spacing: 1.5px;
-            margin-bottom: 10px;
-            padding-left: 5px;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            padding-left: 2px;
         }
 
         .input-box {
             width: 100%;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(0, 243, 255, 0.2);
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
             border-radius: 12px;
             padding: 16px;
             color: #ffffff;
             font-size: 16px;
-            font-weight: 700;
+            font-weight: 400;
             text-align: center;
             outline: none;
+            letter-spacing: 1px;
         }
 
         .input-box:focus {
-            border-color: #00f3ff;
-            box-shadow: 0 0 15px rgba(0, 243, 255, 0.15);
-            background: rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(0, 0, 0, 0.6);
         }
 
-        /* ------------------ Buttons (Action) ------------------ */
+        /* ------------------ Action Buttons ------------------ */
         .btn-action {
-            background: linear-gradient(135deg, #00f3ff 0%, #0066ff 100%);
-            color: #020205;
+            background: #ffffff;
+            color: #000000;
             border: none;
             padding: 16px;
             width: 100%;
-            border-radius: 14px;
-            font-size: 15px;
-            font-weight: 800;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
             cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0, 243, 255, 0.25);
         }
 
         .btn-action:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0, 243, 255, 0.45);
+            background: rgba(255, 255, 255, 0.85);
+            transform: translateY(-1px);
         }
 
         /* ------------------ Key Display Box ------------------ */
         .key-display-box {
             display: none;
             margin-top: 25px;
-            background: rgba(255, 0, 85, 0.03);
-            border: 1px dashed #ff0055;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px dashed rgba(255, 255, 255, 0.3);
             padding: 18px;
-            border-radius: 14px;
-            font-family: 'Consolas', monospace;
-            font-size: 15px;
-            color: #ff0055;
-            font-weight: 700;
+            border-radius: 12px;
+            font-family: monospace;
+            font-size: 14px;
+            color: #ffffff;
             cursor: pointer;
-            text-shadow: 0 0 8px rgba(255, 0, 85, 0.3);
             word-break: break-all;
             animation: fadeIn 0.4s ease;
+            letter-spacing: 0.5px;
         }
 
         .key-display-box:hover {
-            background: rgba(255, 0, 85, 0.08);
-            box-shadow: 0 0 15px rgba(255, 0, 85, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+            border-color: #ffffff;
         }
 
         .copy-tip {
             display: none;
-            font-size: 11px;
-            color: #444466;
+            font-size: 10px;
+            color: rgba(255, 255, 255, 0.3);
             margin-top: 12px;
             letter-spacing: 1px;
             animation: fadeIn 0.4s ease;
@@ -274,86 +290,87 @@
 
         /* ------------------ Support Panel ------------------ */
         .support-box {
-            background: rgba(88, 101, 242, 0.03);
-            border: 1px solid rgba(88, 101, 242, 0.2);
-            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.01);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
             padding: 22px;
         }
 
         .discord-title {
-            color: #5865F2;
-            font-weight: 800;
-            font-size: 18px;
-            letter-spacing: 1px;
+            color: #ffffff;
+            font-weight: 400;
+            font-size: 16px;
+            letter-spacing: 3px;
             margin-bottom: 8px;
         }
 
         .support-btn-group {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             margin-top: 18px;
         }
 
         .btn-discord {
             flex: 2;
-            background: #5865F2;
+            background: rgba(255, 255, 255, 0.1);
             color: #ffffff;
-            border: none;
+            border: 1px solid rgba(255,255,255,0.1);
             padding: 14px;
             border-radius: 10px;
-            font-weight: 700;
+            font-weight: 500;
+            letter-spacing: 1px;
             cursor: pointer;
         }
-        .btn-discord:hover { background: #4752C4; transform: translateY(-2px); box-shadow: 0 5px 15px rgba(88, 101, 242, 0.3); }
+        .btn-discord:hover { background: #ffffff; color: #000000; }
 
         .btn-copy-link {
             flex: 1;
             background: transparent;
-            color: #00f3ff;
-            border: 1px solid rgba(0, 243, 255, 0.3);
+            color: rgba(255, 255, 255, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             padding: 14px;
             border-radius: 10px;
-            font-weight: 700;
+            font-weight: 500;
             cursor: pointer;
         }
-        .btn-copy-link:hover { background: rgba(0, 243, 255, 0.08); border-color: #00f3ff; transform: translateY(-2px); }
+        .btn-copy-link:hover { border-color: rgba(255, 255, 255, 0.4); color: #ffffff; }
 
         /* ------------------ Ban Panel & Search ------------------ */
         .search-group {
             display: flex;
-            gap: 12px;
+            gap: 10px;
             margin-bottom: 20px;
         }
 
         .search-box {
             flex: 2;
-            background: rgba(0, 0, 0, 0.3);
-            border: 1px solid rgba(255, 0, 85, 0.2);
-            border-radius: 12px;
-            padding: 16px;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            padding: 14px;
             color: #ffffff;
-            font-size: 14px;
+            font-size: 13px;
             outline: none;
         }
-        .search-box:focus { border-color: #ff0055; box-shadow: 0 0 15px rgba(255, 0, 85, 0.15); }
+        .search-box:focus { border-color: rgba(255, 255, 255, 0.3); }
 
         .btn-search {
             flex: 1;
-            background: #ff0055;
+            background: rgba(255, 255, 255, 0.1);
             color: #ffffff;
-            border: none;
-            border-radius: 12px;
-            font-weight: 700;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            font-weight: 500;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(255, 0, 85, 0.2);
+            font-size: 13px;
         }
-        .btn-search:hover { background: #d60048; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 0, 85, 0.35); }
+        .btn-search:hover { background: #ffffff; color: #000000; }
 
         .result-box {
             display: none;
-            background: rgba(15, 5, 10, 0.6);
-            border: 1px solid rgba(255, 0, 85, 0.15);
-            border-radius: 16px;
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 14px;
             padding: 22px;
             text-align: left;
             animation: fadeIn 0.4s ease;
@@ -361,61 +378,65 @@
 
         .result-item {
             margin-bottom: 14px;
-            font-size: 14px;
+            font-size: 13px;
             display: flex;
             justify-content: space-between;
-            border-bottom: 1px solid rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(255,255,255,0.02);
             padding-bottom: 8px;
         }
 
-        .result-label { color: #666688; }
-        .result-value { font-weight: 600; color: #ffffff; word-break: break-all; max-width: 70%; text-align: right; }
-        .result-value.active-status { color: #00ff66; text-shadow: 0 0 8px rgba(0,255,102,0.3); }
-        .result-value.banned-status { color: #ff0055; text-shadow: 0 0 8px rgba(255,0,85,0.3); }
+        .result-label { color: rgba(255, 255, 255, 0.4); }
+        .result-value { font-weight: 400; color: #ffffff; word-break: break-all; max-width: 70%; text-align: right; }
+        .result-value.active-status { color: #ffffff; font-weight: 600; }
+        .result-value.banned-status { color: rgba(255, 255, 255, 0.3); text-decoration: line-through; }
 
         .btn-ban-action {
             width: 100%;
-            background: linear-gradient(135deg, #ff0055 0%, #a30036 100%);
-            color: white;
-            border: none;
-            padding: 16px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 14px;
+            background: transparent;
+            color: #ff3b30;
+            border: 1px solid rgba(255, 59, 48, 0.3);
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: 500;
+            font-size: 13px;
             cursor: pointer;
             margin-top: 10px;
-            box-shadow: 0 4px 15px rgba(255, 0, 85, 0.2);
+            letter-spacing: 1px;
         }
-        .btn-ban-action:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 0, 85, 0.4); }
-        .btn-ban-action:disabled { background: #222233; color: #555566; border: 1px solid #333344; cursor: not-allowed; box-shadow: none; transform: none; }
+        .btn-ban-action:hover:not(:disabled) { background: #ff3b30; color: #ffffff; border-color: #ff3b30; }
+        .btn-ban-action:disabled { background: transparent; color: rgba(255,255,255,0.2); border: 1px solid rgba(255,255,255,0.05); cursor: not-allowed; }
 
-        /* Animation */
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
+            from { opacity: 0; transform: translateY(6px); }
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
+<!-- เอฟเฟกต์พื้นหลังดาวหมุนวนตามรูปภาพที่ส่งมา -->
+<div class="vortex-bg">
+    <div class="vortex-star-flare"></div>
+</div>
+
 <div class="container">
     <h1>PROXY-ROBLOX</h1>
-    <div class="subtitle">Premium Cyber System</div>
+    <div class="subtitle">Cosmic Minimalist System</div>
     
     <!-- เมนูหลัก -->
     <div class="main-menu">
         <button class="menu-btn" onclick="togglePanel('keyPanel')">
-            <span>🔑 ระบบจัดการคีย์ (KEY SYSTEM)</span>
+            <span>KEY SYSTEM</span>
             <span class="menu-arrow">▶</span>
         </button>
         
         <button class="menu-btn" onclick="togglePanel('supportPanel')">
-            <span>💬 ติดต่อทีมงาน (SUPPORT COMMUNITY)</span>
+            <span>SUPPORT COMMUNITY</span>
             <span class="menu-arrow">▶</span>
         </button>
         
         <button class="menu-btn danger" onclick="togglePanel('banPanel')">
-            <span>🚫 ระบบแบนคีย์ผู้ใช้งาน (BAN PANEL)</span>
+            <span>BAN PANEL</span>
             <span class="menu-arrow">▶</span>
         </button>
     </div>
@@ -423,8 +444,8 @@
     <!-- แผงระบบคีย์ -->
     <div class="panel" id="keyPanel">
         <div class="tab-group">
-            <button class="tab-btn active" id="btnDay" onclick="setMode('day')">📅 รายวัน (DAY)</button>
-            <button class="tab-btn" id="btnMonth" onclick="setMode('month')">🌙 รายเดือน (MONTH)</button>
+            <button class="tab-btn active" id="btnDay" onclick="setMode('day')">DAY</button>
+            <button class="tab-btn" id="btnMonth" onclick="setMode('month')">MONTH</button>
         </div>
 
         <div class="input-group">
@@ -432,20 +453,20 @@
             <input type="number" id="numInput" class="input-box" min="1" max="15" value="1" oninput="validateInput(this)">
         </div>
         
-        <button class="btn-action" onclick="generateKey()">⚡ GENERATE KEY</button>
+        <button class="btn-action" onclick="generateKey()">GENERATE KEY</button>
         
         <div class="key-display-box" id="keyBox" onclick="copyToClipboard()"></div>
-        <div class="copy-tip" id="copyTip">✨ แตะที่กล่องด้านบนเพื่อคัดลอกคีย์อัตโนมัติ ✨</div>
+        <div class="copy-tip" id="copyTip">TAP TO COPY KEY</div>
     </div>
 
     <!-- แผงติดต่อทีมงาน -->
     <div class="panel" id="supportPanel">
         <div class="support-box">
             <div class="discord-title">PROXY COMMUNITY</div>
-            <p style="font-size: 13px; color: #666688; margin: 0 0 15px 0;">พบเจอบั๊ก หรือต้องการความช่วยเหลือ? เข้าร่วมเซิร์ฟเวอร์ดิสคอร์ดของเรา</p>
+            <p style="font-size: 12px; color: rgba(255,255,255,0.4); margin: 0 0 15px 0; letter-spacing: 0.5px;">พบเจอบั๊ก หรือต้องการความช่วยเหลือ? เข้าร่วมเซิร์ฟเวอร์ดิสคอร์ดของเรา</p>
             <div class="support-btn-group">
-                <button class="btn-discord" onclick="openDiscord()">🚀 เข้าสู่ Discord</button>
-                <button class="btn-copy-link" onclick="copyDiscordLink()">📋 COPY</button>
+                <button class="btn-discord" onclick="openDiscord()">JOIN DISCORD</button>
+                <button class="btn-copy-link" onclick="copyDiscordLink()">COPY</button>
             </div>
         </div>
     </div>
@@ -454,24 +475,24 @@
     <div class="panel" id="banPanel">
         <div class="search-group">
             <input type="text" id="searchKeyInput" class="search-box" placeholder="กรอกชื่อคีย์ที่ต้องการค้นหา...">
-            <button class="btn-search" onclick="searchKey()">🔍 ค้นหา</button>
+            <button class="btn-search" onclick="searchKey()">SEARCH</button>
         </div>
 
         <!-- ผลลัพธ์การค้นหา -->
         <div class="result-box" id="resultBox">
             <div class="result-item">
-                <span class="result-label">คีย์</span>
+                <span class="result-label">KEY</span>
                 <span class="result-value" id="resKeyName">-</span>
             </div>
             <div class="result-item">
-                <span class="result-label">เวลาคงเหลือ</span>
+                <span class="result-label">TIME LEFT</span>
                 <span class="result-value" id="resTimeLeft">-</span>
             </div>
             <div class="result-item">
-                <span class="result-label">สถานะระบบ</span>
+                <span class="result-label">STATUS</span>
                 <span class="result-value" id="resStatus">-</span>
             </div>
-            <button class="btn-ban-action" id="banActionBtn" onclick="executeBan()">🚫 สั่งระงับการใช้งานคีย์นี้ (BAN)</button>
+            <button class="btn-ban-action" id="banActionBtn" onclick="executeBan()">BAN THIS KEY</button>
         </div>
     </div>
 </div>
@@ -480,7 +501,6 @@
     let currentMode = 'day';
     const discordURL = "https://discord.gg/6aCDxfR7br";
 
-    // ฐานข้อมูลจำลองรองรับตัวพิมพ์เล็กตามตัวอย่าง
     let mockKeyDatabase = {
         "proxy-roblox-1day-qdvkj": { timeLeft: "1 วัน 0 ชั่วโมง", status: "ใช้งานได้ปกติ" },
         "proxy-roblox-3month-abcde": { timeLeft: "3 เดือน 0 วัน", status: "ใช้งานได้ปกติ" }
@@ -532,23 +552,23 @@
         if(data.status === "ถูกแบน (BANNED)") {
             statusEl.className = "result-value banned-status";
             banBtn.disabled = true;
-            banBtn.innerText = "🔒 คีย์นี้ถูกระงับถาวรแล้ว";
+            banBtn.innerText = "BANNED";
         } else {
             statusEl.className = "result-value active-status";
             banBtn.disabled = false;
-            banBtn.innerText = "🚫 สั่งระงับการใช้งานคีย์นี้ (BAN)";
+            banBtn.innerText = "BAN THIS KEY";
         }
     }
 
     function executeBan() {
         if(!activeSearchedKey || !mockKeyDatabase[activeSearchedKey]) return;
 
-        if(confirm(`⚠️ ยืนยันคำสั่งแบนคีย์: ${activeSearchedKey}?\nเมื่อแบนแล้วผู้ใช้จะไม่สามารถเข้าสู่ระบบได้อีกต่อไป`)) {
+        if(confirm(`⚠️ ยืนยันคำสั่งแบนคีย์: ${activeSearchedKey}?`)) {
             mockKeyDatabase[activeSearchedKey].status = "ถูกแบน (BANNED)";
-            mockKeyDatabase[activeSearchedKey].timeLeft = "0 นาที (หมดสิทธิ์ใช้งาน)";
+            mockKeyDatabase[activeSearchedKey].timeLeft = "0 นาที";
             
             updateResultUI(activeSearchedKey, mockKeyDatabase[activeSearchedKey]);
-            alert(`🔒 ทำการสั่งแบนคีย์ ${activeSearchedKey} สำเร็จแล้ว!`);
+            alert(`ทำรายการสั่งแบนคีย์สำเร็จแล้ว`);
         }
     }
 
@@ -556,7 +576,7 @@
 
     function copyDiscordLink() {
         navigator.clipboard.writeText(discordURL).then(() => {
-            alert("📋 คัดลอกลิงก์ Discord ไปยังคลิปบอร์ดแล้ว!");
+            alert("📋 คัดลอกลิงก์ Discord แล้ว");
         });
     }
 
@@ -625,7 +645,7 @@
     function copyToClipboard() {
         const keyText = document.getElementById('keyBox').innerText;
         navigator.clipboard.writeText(keyText).then(() => {
-            alert("📋 คัดลอกคีย์เรียบร้อยแล้ว!\n" + keyText);
+            alert("📋 คัดลอกคีย์เรียบร้อยแล้ว");
         });
     }
 </script>
